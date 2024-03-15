@@ -1,0 +1,20 @@
+version: "3.8"
+services:
+  dev-db:
+    image: postgres:16.2
+    ports:
+      - "5434:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: testdb
+    networks:
+      - nestjs-network
+networks:
+  nestjs-network:
+      
+## Runing the container
+# docker-compose up -d
+# docker-compose up -d dev-database
+## Stopping the container
+# docker-compose down
