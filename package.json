@@ -7,7 +7,8 @@
   "license": "UNLICENSED",
   "scripts": {
     "db:dev:remove": "docker compose rm dev-db --stop --force --volumes",
-    "db:dev:create": "docker compose up -d",
+    "db:dev:create": "docker compose up --detach",
+    "db:dev:restart": "yarn db:dev:remove && yarn db:dev:create",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
@@ -23,12 +24,18 @@
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
+    "@nestjs/config": "^3.2.0",
     "@nestjs/core": "^10.0.0",
+    "@nestjs/jwt": "^10.2.0",
+    "@nestjs/passport": "^10.0.3",
     "@nestjs/platform-express": "^10.0.0",
     "@prisma/client": "5.11.0",
+    "@types/passport-jwt": "^4.0.1",
     "argon2": "^0.40.1",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",
+    "passport": "^0.7.0",
+    "passport-jwt": "^4.0.1",
     "reflect-metadata": "^0.2.0",
     "rxjs": "^7.8.1"
   },

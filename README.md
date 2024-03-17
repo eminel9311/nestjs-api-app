@@ -41,17 +41,7 @@ $ yarn run test:e2e
 # test coverage
 $ yarn run test:cov
 ```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-
-
-## License
-
-Nest is [MIT licensed](LICENSE).
-
+##Prisma
 
 [Prisma](https://www.prisma.io/docs)
 
@@ -61,21 +51,37 @@ Nest is [MIT licensed](LICENSE).
 $ yarn add -D prisma
 $ npx prisma init
 ```
-## Help
+# Help
 
 ```bash
 $ npx prisma --help
 ```
 
-## Create migrations from your Prisma schema, apply them to the database, generate artifacts
+# Create migrations from your Prisma schema, apply them to the database, generate artifacts
 
 ```bash
 $ npx prisma migrate dev
 ```
 
 
-## Studio
+# Studio
 
 ```bash
 $ npx prisma studio
+```
+
+## Runing the container
+
+```bash
+$ docker-compose up -d
+```
+
+```bash
+$ docker-compose up -d dev-db
+```
+
+# Stopping the container
+
+```bash
+$ docker-compose down
 ```
