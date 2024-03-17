@@ -1,13 +1,26 @@
-version: "3.3"
+version: "3.8"
 services:
   dev-db:
     image: postgres:16.2
+    container_name: nestjs-api-dev-database
     ports:
-      - "5434:5432"
+      - "5434:5432" # map the port to the host {port_on_host}:{port_in_container}
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
-      POSTGRES_DB: testdb
+      POSTGRES_DB: nestjs_api_db_dev
+    networks:
+      - nestjs-network
+# db for test
+  test-db:
+    image: postgres:16.2
+    container_name: nestjs-api-test-database
+    ports:
+      - "5435:5432" # map the port to the host {port_on_host}:{port_in_container}
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: nestjs_api_db_test
     networks:
       - nestjs-network
 networks:

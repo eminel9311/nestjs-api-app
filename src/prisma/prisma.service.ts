@@ -8,10 +8,18 @@ export class PrismaService extends PrismaClient {
     super({
       datasources: { 
         db: {
-          // url: process.env.DATABASE_URL,
           url: configService.get<string>('DATABASE_URL'),
         },
        },
     });
+  }
+
+  // notice: only run this function in test environment
+  clearDatabase() {
+    console.log('Clearing database');
+    return this.$transaction([
+      this.note.deleteMany(),
+      this.user.deleteMany(),
+    ]);
   }
 }

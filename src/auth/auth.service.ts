@@ -1,5 +1,5 @@
 import { ForbiddenException, Injectable } from "@nestjs/common";
-import { PrismaService } from "src/prisma/prisma.service";
+import { PrismaService } from "../prisma/prisma.service";
 import { User, Note } from "@prisma/client";
 import { AuthDTO } from "./dto";
 import * as argon from 'argon2';
@@ -30,8 +30,8 @@ export class AuthService {
           createdAt: true,
         }
       })
-      // return user;
-      return this.signJwtToken(user.id, user.email);
+      return user;
+      // return this.signJwtToken(user.id, user.email);
 
     } catch (error) {
       if (error.code === 'P2002') {
