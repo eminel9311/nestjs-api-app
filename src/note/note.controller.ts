@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, ParseIntPipe, Patch, Post, Query, UseGuards } from '@nestjs/common';
 import { MyJwtGuard } from '../auth/guard';
 import { NoteService } from './note.service';
 import { GetUser } from '../auth/decorator';
@@ -37,9 +37,10 @@ export class NoteController {
     return this.noteService.updateNoteById(noteId, updateNoteDto) 
   }
 
-  @Delete(':id')
+  @HttpCode(HttpStatus.NO_CONTENT)
+  @Delete()
   deleteNoteById(
-    @Param('id', ParseIntPipe) noteId: number
+    @Query('id', ParseIntPipe) noteId: number
   ) {
     return this.noteService.deleteNoteById(noteId)
   }

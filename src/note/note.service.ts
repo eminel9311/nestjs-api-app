@@ -88,7 +88,6 @@ export class NoteService {
         isActive: false
       }
     })
-    return deletedNote;
   }
 
 }
