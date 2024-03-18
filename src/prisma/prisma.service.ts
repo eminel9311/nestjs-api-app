@@ -12,6 +12,7 @@ export class PrismaService extends PrismaClient {
         },
        },
     });
+    console.log('db url:', configService.get<string>('DATABASE_URL'));
   }
 
   // notice: only run this function in test environment
