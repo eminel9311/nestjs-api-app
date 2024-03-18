@@ -31,8 +31,9 @@ model User {
 model Note {
   id          Int      @id @default(autoincrement())
   title       String
-  description String
+  description String?
   url         String
+  isActive    Boolean  @default(true)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   //relationship

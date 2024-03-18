@@ -1,37 +1,47 @@
-import { Controller, Delete, Get, Patch, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post, UseGuards } from '@nestjs/common';
 import { MyJwtGuard } from '../auth/guard';
+import { NoteService } from './note.service';
+import { GetUser } from '../auth/decorator';
+import { InsertNoteDTO, UpdateNoteDTO } from './dto';
 
 @UseGuards(MyJwtGuard)
 @Controller('notes')
 export class NoteController {
-
-  constructor(){
-    
-  }
-
-  @Get()
-  getNotes() {
-    return 'This action returns all notes';
-  }
+  constructor(
+    private noteService: NoteService
+  ){}
 
   @Get()
-  getNoteById() {
+  getNotes(@GetUser('id') userId: number ) {
+    return this.noteService.getNotes(userId);
+  }
 
+  @Get(':id')
+  getNoteById(@Param('id', ParseIntPipe) noteId: number) {
+    return this.noteService.getNoteById(noteId)
   }
 
   @Post()
-  insertNote() {
-
+  insertNote(
+    @GetUser('id') userId: number,
+    @Body() insertNoteDto: InsertNoteDTO
+    ) {
+      return this.noteService.insertNote(userId, insertNoteDto)
   }
 
-  @Patch()
-  updateNoteById() {
-
+  @Patch(':id')
+  updateNoteById(
+    @Param('id', ParseIntPipe) noteId: number,
+    @Body() updateNoteDto: UpdateNoteDTO
+  ) {
+    return this.noteService.updateNoteById(noteId, updateNoteDto) 
   }
 
-  @Delete()
-  deleteNoteById() {
-
+  @Delete(':id')
+  deleteNoteById(
+    @Param('id', ParseIntPipe) noteId: number
+  ) {
+    return this.noteService.deleteNoteById(noteId)
   }
 
 
